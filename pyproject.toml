@@ -1,0 +1,55 @@
+[tool.pytest.ini_options]
+# Pytest configuration for FastAPI Todo App
+
+# Test discovery patterns
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Test directory
+testpaths = ["test"]
+
+# Minimum version requirement
+minversion = "6.0"
+
+# Add project root to Python path
+pythonpath = ["."]
+
+# Show extra test summary info
+addopts = [
+    "-v",  # Verbose output
+    "--tb=short",  # Short traceback format
+    "--strict-markers",  # Only allow known markers
+    "--disable-warnings",  # Disable warnings for cleaner output
+    "--color=yes",  # Colored output
+]
+
+# Custom markers
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "auth: marks tests related to authentication",
+    "todos: marks tests related to todos functionality",
+    "admin: marks tests related to admin functionality",
+    "users: marks tests related to user management",
+]
+
+# Configure test collection
+collect_ignore = [
+    "__pycache__",
+    "*.pyc",
+    ".git",
+]
+
+# Logging configuration for tests
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(name)s: %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+# Filter warnings
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]

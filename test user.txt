@@ -1,0 +1,19 @@
+{
+  "email": "sarah.chen@example.com",
+  "username": "sarahc",
+  "first_name": "Sarah",
+  "last_name": "Chen",
+  "password": "SecurePass123!",
+  "is_active": true,
+  "role": "user"
+}
+
+admin user:
+{
+  "email": "admin@todoapp.com",
+  "username": "admin",
+  "first_name": "Admin",
+  "last_name": "User",
+  "password": "admin123",
+  "role": "admin"
+}
