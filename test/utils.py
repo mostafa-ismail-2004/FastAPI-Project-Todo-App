@@ -14,6 +14,8 @@ import os
 
 # Set testing environment BEFORE any other imports
 os.environ["TESTING"] = "1"
+os.environ["SECRET_KEY"] = "test-secret-key-for-testing-only-not-secure"
+os.environ["DATABASE_URL"] = "sqlite:///./test_database.db"
 
 import pytest
 from fastapi.testclient import TestClient
@@ -35,8 +37,8 @@ TestingSessionLocal = SessionLocal  # Use the same SessionLocal from database.py
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
-# Test JWT configuration (same as auth.py)
-SECRET_KEY = '1f50912d83cc725d6d98f40422a225df6a72c91b1f09f013464273bb0c980e11'
+# Test JWT configuration (use environment variable like the main app)
+SECRET_KEY = os.getenv("SECRET_KEY", "test-secret-key-for-testing-only-not-secure")
 ALGORITHM = 'HS256'
 
 

@@ -8,10 +8,20 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from datetime import timedelta, datetime, timezone
 from jose import jwt, JWTError
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 router = APIRouter(prefix='/auth', tags=['auth'])
 
-secret_key = '1f50912d83cc725d6d98f40422a225df6a72c91b1f09f013464273bb0c980e11'
+# Get secret key from environment variable  
+_secret_key = os.getenv("SECRET_KEY")
+if not _secret_key:
+    raise ValueError("SECRET_KEY environment variable is required")
+secret_key: str = _secret_key
+
 algorithm = 'HS256'
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
